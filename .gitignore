@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+
+# generated on build
+src/routeTree.gen.ts

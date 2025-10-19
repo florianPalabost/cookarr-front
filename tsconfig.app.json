@@ -27,7 +27,15 @@
         /* Custom */
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "@schemas/*": ["./src/schemas/*"],
+            "@hooks/*": ["./src/hooks/*"],
+            "@components/*": ["./src/components/*"],
+            "@services/*": ["./src/services/*"],
+            "@enums/*": ["./src/enums/*"],
+            "@lib/*": ["./src/lib/*"],
+            "@routes/*": ["./src/routes/*"],
+            "@store/*": ["./src/store/*"]
         }
     },
     "include": ["src"]
