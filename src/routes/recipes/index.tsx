@@ -1,10 +1,10 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { Plus } from 'lucide-react';
 import { RecipeList } from '@/components/recipes/recipe-list';
 import { Button } from '@/components/ui/button';
 import { RECIPE_QUERY_CACHE_KEYS } from '@/hooks/recipes/use-recipes';
 import { queryClient } from '@/lib/queryClient';
 import { RecipeApiService } from '@/services/api/v1/recipe.service';
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { Plus } from 'lucide-react';
 
 export const Route = createFileRoute('/recipes/')({
     component: RecipesIndex,

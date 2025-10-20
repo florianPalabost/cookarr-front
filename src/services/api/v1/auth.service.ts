@@ -1,10 +1,10 @@
+import { httpClient } from '@/lib/http';
+import { ensureCsrfCookie } from '@/lib/http/csrf';
+import { API_ENDPOINTS } from '@/lib/http/endpoints';
+import { apiResponseSchema } from '@/schemas/api.schema';
 import type { LoginFormSchema } from '@/schemas/login-form.schema';
 import type { RegisterFormSchema } from '@/schemas/register-form.schema';
-import { httpClient } from '../../../lib/http';
-import { ensureCsrfCookie } from '../../../lib/http/csrf';
-import { API_ENDPOINTS } from '../../../lib/http/endpoints';
-import { apiResponseSchema } from '../../../schemas/api.schema';
-import { userSchema } from '../../../schemas/user.schema';
+import { userSchema } from '@/schemas/user.schema';
 
 export const AuthService = {
     async login(credentials: LoginFormSchema) {

@@ -1,5 +1,5 @@
-import { useAuthStore } from '@store/auth.store';
 import ky, { type Hooks, HTTPError } from 'ky';
+import { useAuthStore } from '@/store/auth.store';
 
 // TODO: move to lib or utils ?
 function getCookie(name: string) {

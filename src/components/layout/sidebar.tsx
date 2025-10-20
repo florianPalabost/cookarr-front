@@ -1,6 +1,6 @@
 import { Link, useRouterState } from '@tanstack/react-router';
-import { Book, Home, User, Sandwich } from 'lucide-react';
-import { cn } from '@lib/utils';
+import { Book, Home, Sandwich } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const navItems = [
     { path: '/', label: 'Home', icon: Home },

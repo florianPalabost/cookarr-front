@@ -1,8 +1,8 @@
-import { useRecipes } from '@hooks/recipes/use-recipes';
+import { useRecipes } from '@/hooks/recipes/use-recipes';
+import { useRecipesStore } from '@/store/recipes.store';
 import { AnimatePresence, motion } from 'framer-motion';
-import { RecipeItem } from './recipe-item';
-import { useRecipesStore } from '@store/recipes.store';
 import { AlertCircle, Loader2 } from 'lucide-react';
+import { RecipeItem } from './recipe-item';
 
 export function RecipeList() {
     const { data: recipes, isLoading, error } = useRecipes();

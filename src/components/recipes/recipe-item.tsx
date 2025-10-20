@@ -1,4 +1,4 @@
-import type { Recipe } from '@schemas/recipe.schema';
+import type { Recipe } from '@/schemas/recipe.schema';
 import { motion } from 'framer-motion';
 import { Bookmark, Clock, Heart } from 'lucide-react';
 

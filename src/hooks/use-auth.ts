@@ -1,10 +1,10 @@
-import { queryClient } from '@lib/queryClient';
-import type { LoginFormSchema } from '@schemas/login-form.schema';
-import type { RegisterFormSchema } from '@schemas/register-form.schema';
-import { AuthService } from '@services/api/v1/auth.service';
-import { useAuthStore } from '@store/auth.store';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
+import { queryClient } from '@/lib/queryClient';
+import type { LoginFormSchema } from '@/schemas/login-form.schema';
+import type { RegisterFormSchema } from '@/schemas/register-form.schema';
+import { AuthService } from '@/services/api/v1/auth.service';
+import { useAuthStore } from '@/store/auth.store';
 
 export const AUTH_QUERY_CACHE_KEYS = {
     currentUser: ['auth', 'current-user'] as const,

@@ -1,9 +1,9 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type {
     CreateRecipeInput,
     UpdateRecipeInput,
-} from '@schemas/recipe.schema';
-import { RecipeApiService } from '@services/api/v1/recipe.service';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+} from '@/schemas/recipe.schema';
+import { RecipeApiService } from '@/services/api/v1/recipe.service';
 
 export const RECIPE_QUERY_CACHE_KEYS = {
     all: ['recipes'] as const,

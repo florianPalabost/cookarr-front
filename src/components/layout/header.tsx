@@ -1,6 +1,7 @@
-import { Menu, User, LogOut, LogIn, UserPlus, User2 } from 'lucide-react';
-import { useAuthStore } from '@store/auth.store';
-import { Button } from '@components/ui/button';
+import { Link } from '@tanstack/react-router';
+import { LogIn, LogOut, Menu, User, User2, UserPlus } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -8,9 +9,8 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from '@components/ui/dropdown-menu';
-import { Link } from '@tanstack/react-router';
-import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+} from '@/components/ui/dropdown-menu';
+import { useAuthStore } from '@/store/auth.store';
 
 export function Header() {
     const { user, logout } = useAuthStore();
