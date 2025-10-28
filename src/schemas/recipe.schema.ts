@@ -6,7 +6,12 @@ export const recipeSchema = z.object({
     user_id: z.number(),
     title: z.string().min(1),
     description: z.string().optional(),
-    instructions: z.string().optional(),
+    ingredients: z
+        .array(z.string().min(1, 'Ingredient cannot be empty'))
+        .min(1, 'At least one ingredient required'),
+    instructions: z
+        .array(z.string().min(1, 'Instruction cannot be empty'))
+        .min(1, 'At least one instruction required'),
     image: z.string().nullable(),
     // is_public: z.boolean(),
     created_at: z.string().optional(),
@@ -18,9 +23,14 @@ export const recipeSchema = z.object({
 
 export const recipeSchemaArray = z.array(recipeSchema);
 
+export const createRecipeSchema = recipeSchema.omit({
+    id: true,
+    uuid: true,
+    user_id: true,
+    created_at: true,
+    updated_at: true,
+});
+
 export type Recipe = z.infer<typeof recipeSchema>;
-export type CreateRecipeInput = Omit<
-    Recipe,
-    'id' | 'user_id' | 'created_at' | 'updated_at'
->;
+export type CreateRecipeInput = z.infer<typeof createRecipeSchema>;
 export type UpdateRecipeInput = Partial<CreateRecipeInput>;

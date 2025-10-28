@@ -68,3 +68,14 @@ export function useRegister() {
         },
     });
 }
+
+export function useLogout() {
+    const clearAuth = useAuthStore((state) => state.clearAuth);
+
+    return useMutation({
+        mutationFn: async () => await AuthService.logout(),
+        onSuccess: () => {
+            clearAuth();
+        },
+    });
+}
