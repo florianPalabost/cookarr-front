@@ -10,8 +10,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useAuthStore } from '@/store/auth.store';
 import { useLogout } from '@/hooks/use-auth';
+import { useAuthStore } from '@/store/auth.store';
 
 export function Header() {
     const { user, isAuthenticated } = useAuthStore();

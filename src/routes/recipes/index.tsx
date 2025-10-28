@@ -20,7 +20,6 @@ function RecipesIndex() {
     return (
         <main className="max-w-7xl mx-auto py-8 px-4">
             <header className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">Recipes</h1>
                 <Button>
                     <Link to="/recipes/create" className="flex items-center">
                         <Plus /> Add Recipe
