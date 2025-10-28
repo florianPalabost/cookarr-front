@@ -1,5 +1,5 @@
 import { Link, useRouterState } from '@tanstack/react-router';
-import { Book, Home, Sandwich } from 'lucide-react';
+import { Book, ChefHat, Home, Sandwich } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -13,8 +13,9 @@ export function Sidebar() {
 
     return (
         <aside className="hidden md:flex w-64 flex-col bg-white border-r shadow-sm">
-            <div className="h-16 flex items-center justify-center font-bold text-xl border-b">
-                CookArr
+            <div className="h-16 flex items-center justify-center font-bold text-xl border-b gap-2">
+                <ChefHat className="h-6 w-6 text-orange-600" />
+                <span className="text-orange-600">CookArr</span>
             </div>
             <nav className="flex-1 p-4 space-y-2">
                 {navItems.map(({ path, label, icon: Icon }) => {

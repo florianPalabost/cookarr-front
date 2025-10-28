@@ -11,10 +11,11 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useAuthStore } from '@/store/auth.store';
+import { useLogout } from '@/hooks/use-auth';
 
 export function Header() {
-    const { user, logout } = useAuthStore();
-    const isAuthenticated = Boolean(user?.auth?.access_token);
+    const { user, isAuthenticated } = useAuthStore();
+    const logout = useLogout();
 
     return (
         <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-white/80 backdrop-blur-md px-4 shadow-sm">
@@ -25,7 +26,6 @@ export function Header() {
                 </Button>
             </div>
 
-            {/* Center: Title / Welcome */}
             <div className="flex-1 text-center md:text-left font-semibold text-gray-800">
                 Welcome back, {user?.name ?? 'Chef'} 👨‍🍳
             </div>
@@ -69,7 +69,7 @@ export function Header() {
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    onClick={() => logout()}
+                                    onClick={() => logout}
                                     className="flex items-center gap-2 text-red-600 focus:text-red-700"
                                 >
                                     <LogOut className="h-4 w-4" />
