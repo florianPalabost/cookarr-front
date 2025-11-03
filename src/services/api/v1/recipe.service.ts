@@ -12,7 +12,11 @@ import {
 export const RecipeApiService = {
     async getRecipes(): Promise<Recipe[]> {
         const response = await httpClient
-            .get(API_ENDPOINTS.RECIPES.INDEX)
+            .get(API_ENDPOINTS.RECIPES.INDEX, {
+                searchParams: {
+                    include: 'ingredients',
+                },
+            })
             .json();
 
         const parsed = apiResponseSchema(recipeSchemaArray).safeParse(response);

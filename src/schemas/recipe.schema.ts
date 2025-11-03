@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ingredientSchema } from './ingredient.schema';
 
 export const recipeSchema = z.object({
     id: z.number(),
@@ -6,13 +7,14 @@ export const recipeSchema = z.object({
     user_id: z.number(),
     title: z.string().min(1),
     description: z.string().optional(),
-    ingredients: z
-        .array(z.string().min(1, 'Ingredient cannot be empty'))
-        .min(1, 'At least one ingredient required'),
-    instructions: z
-        .array(z.string().min(1, 'Instruction cannot be empty'))
-        .min(1, 'At least one instruction required'),
-    image: z.string().nullable(),
+    // ingredients: z
+    //     .array(z.string().min(1, 'Ingredient cannot be empty'))
+    //     .min(1, 'At least one ingredient required'),
+    // instructions: z
+    //     .array(z.string().min(1, 'Instruction cannot be empty'))
+    //     .min(1, 'At least one instruction required'),
+    ingredients: z.array(ingredientSchema).optional(),
+    image: z.string().nullable().optional().or(z.literal('')),
     // is_public: z.boolean(),
     created_at: z.string().optional(),
     updated_at: z.string().optional(),
@@ -23,13 +25,24 @@ export const recipeSchema = z.object({
 
 export const recipeSchemaArray = z.array(recipeSchema);
 
-export const createRecipeSchema = recipeSchema.omit({
-    id: true,
-    uuid: true,
-    user_id: true,
-    created_at: true,
-    updated_at: true,
-});
+export const createRecipeSchema = recipeSchema
+    .omit({
+        id: true,
+        uuid: true,
+        user_id: true,
+        created_at: true,
+        updated_at: true,
+        ingredients: true,
+        // instructions: true,
+    })
+    .extend({
+        ingredients: z
+            .array(z.string().min(1, 'Ingredient cannot be empty'))
+            .min(1, 'At least one ingredient required'),
+        instructions: z
+            .array(z.string().min(1, 'Instruction cannot be empty'))
+            .min(1, 'At least one instruction required'),
+    });
 
 export type Recipe = z.infer<typeof recipeSchema>;
 export type CreateRecipeInput = z.infer<typeof createRecipeSchema>;

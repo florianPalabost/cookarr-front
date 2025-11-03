@@ -22,7 +22,7 @@ import {
 } from '@/schemas/recipe.schema';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-export const Route = createFileRoute('/recipes/create')({
+export const Route = createFileRoute('/ingredients/create')({
     component: RecipeCreate,
 });
 

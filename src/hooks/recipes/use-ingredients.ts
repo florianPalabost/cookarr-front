@@ -4,35 +4,35 @@ import type {
     Recipe,
     UpdateRecipeInput,
 } from '@/schemas/recipe.schema';
-import { RecipeApiService } from '@/services/api/v1/recipe.service';
 
-export const RECIPE_QUERY_CACHE_KEYS = {
-    all: ['recipes'] as const,
-    byId: (id: number) => [...RECIPE_QUERY_CACHE_KEYS.all, id] as const,
+import { IngredientApiService } from '@/services/api/v1/ingredient.service';
+
+export const INGREDIENT_QUERY_CACHE_KEYS = {
+    all: ['ingredients'] as const,
+    byId: (id: number) => [...INGREDIENT_QUERY_CACHE_KEYS.all, id] as const,
 };
 
-// Get all recipes
-export const useRecipes = () => {
+export const useIngredients = () => {
     return useQuery({
-        queryKey: RECIPE_QUERY_CACHE_KEYS.all,
-        queryFn: () => RecipeApiService.getRecipes(),
+        queryKey: INGREDIENT_QUERY_CACHE_KEYS.all,
+        queryFn: () => IngredientApiService.getIngredients(),
         retry: true,
     });
 };
 
 // Get one recipe
-export const useRecipe = (id: number) => {
+export const useIngredient = (id: number) => {
     return useQuery({
-        queryKey: RECIPE_QUERY_CACHE_KEYS.byId(id),
-        queryFn: () => RecipeApiService.getOne(id),
+        queryKey: INGREDIENT_QUERY_CACHE_KEYS.byId(id),
+        queryFn: () => IngredientApiService.getOne(id),
     });
 };
 
-export const useCreateRecipe = () => {
+export const useCreateIngredient = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (data: CreateRecipeInput) => RecipeApiService.create(data),
+        mutationFn: (data) => IngredientApiService.create(data),
         // onMutate: async (newRecipe) => {
         //     await queryClient.cancelQueries({
         //         queryKey: RECIPE_QUERY_CACHE_KEYS.all,
@@ -76,23 +76,23 @@ export const useCreateRecipe = () => {
         },
         onSuccess: () =>
             queryClient.invalidateQueries({
-                queryKey: RECIPE_QUERY_CACHE_KEYS.all,
+                queryKey: INGREDIENT_QUERY_CACHE_KEYS.all,
             }),
     });
 };
 
-export const useUpdateRecipe = () => {
+export const useUpdateIngredient = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: ({ id, ...data }: { id: number } & UpdateRecipeInput) =>
-            RecipeApiService.update(id, data),
+            IngredientApiService.update(id, data),
         onSuccess: (_, { id }) => {
             queryClient.invalidateQueries({
-                queryKey: RECIPE_QUERY_CACHE_KEYS.byId(id),
+                queryKey: INGREDIENT_QUERY_CACHE_KEYS.byId(id),
             });
             queryClient.invalidateQueries({
-                queryKey: RECIPE_QUERY_CACHE_KEYS.all,
+                queryKey: INGREDIENT_QUERY_CACHE_KEYS.all,
             });
         },
     });
@@ -105,7 +105,7 @@ export const useDeleteRecipe = () => {
         mutationFn: (id: number) => RecipeApiService.delete(id),
         onSuccess: () =>
             queryClient.invalidateQueries({
-                queryKey: RECIPE_QUERY_CACHE_KEYS.all,
+                queryKey: INGREDIENT_QUERY_CACHE_KEYS.all,
             }),
     });
 };

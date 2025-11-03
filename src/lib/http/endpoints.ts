@@ -16,4 +16,11 @@ export const API_ENDPOINTS = {
         UPDATE: `${apiBasePath}/recipes/:id`,
         DELETE: `${apiBasePath}/recipes/:id`,
     },
+    INGREDIENTS: {
+        INDEX: `${apiBasePath}/ingredients`,
+        SHOW: `${apiBasePath}/ingredients/:id`,
+        CREATE: `${apiBasePath}/ingredients`,
+        UPDATE: `${apiBasePath}/ingredients/:id`,
+        DELETE: `${apiBasePath}/ingredients/:id`,
+    },
 } as const;
