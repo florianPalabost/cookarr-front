@@ -25,7 +25,7 @@ export const httpHooks: Hooks = {
             }
 
             const accessToken =
-                useAuthStore.getState().user?.auth?.access_token;
+                useAuthStore.getState().getAccessToken();
 
             if (accessToken) {
                 request.headers.set('Authorization', `Bearer ${accessToken}`);

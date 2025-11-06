@@ -17,6 +17,7 @@ export const useRecipes = () => {
         queryKey: RECIPE_QUERY_CACHE_KEYS.all,
         queryFn: () => RecipeApiService.getRecipes(),
         retry: true,
+        // enabled
     });
 };
 

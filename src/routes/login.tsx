@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
     createFileRoute,
     Link,
+    redirect,
     useNavigate,
     useSearch,
 } from '@tanstack/react-router';
@@ -20,9 +21,19 @@ import { useLogin } from '@/hooks/use-auth';
 import {
     type LoginFormSchema,
     loginFormSchema,
+    LoginSearchSchema,
 } from '@/schemas/login-form.schema';
 
 export const Route = createFileRoute('/login')({
+    validateSearch: LoginSearchSchema,
+    beforeLoad: ({ context, search }) => {
+        if (context.auth.isAuthenticated) {
+            throw redirect({
+                to: search.redirect || '/',
+                search: search,
+            });
+        }
+    },
     component: Login,
 });
 

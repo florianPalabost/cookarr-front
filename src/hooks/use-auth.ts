@@ -37,18 +37,19 @@ export function useLogin() {
     const setAuthenticatedUser = useAuthStore(
         (state) => state.setAuthenticatedUser,
     );
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async (credentials: LoginFormSchema) =>
             await AuthService.login(credentials),
+
         onSuccess: (data) => {
             setAuthenticatedUser(data);
             queryClient.invalidateQueries({
                 queryKey: AUTH_QUERY_CACHE_KEYS.currentUser,
             });
-            navigate({ to: '/' });
+            // navigate({ to: '/' });
         },
     });
 }

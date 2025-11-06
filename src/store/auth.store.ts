@@ -9,12 +9,14 @@ interface AuthState {
     clearAuth: () => void;
     setAuthenticatedUser: (user: User) => void;
     setUser: (user: User) => void;
+    getAccessToken: () => string | null;
+    getRefreshToken: () => string | null;
 }
 
 export const useAuthStore = create<AuthState>()(
     devtools(
         persist(
-            (set) => ({
+            (set, get) => ({
                 user: null,
                 isAuthenticated: false,
 
@@ -27,11 +29,19 @@ export const useAuthStore = create<AuthState>()(
                 },
 
                 setUser: (user: User | null) => set({ user }),
+
+                getAccessToken: () => {
+                    return get().user?.auth?.access_token ?? null;
+                },
+                
+                getRefreshToken: () => {
+                    return get().user?.auth?.refresh_token ?? null;
+                },
             }),
             {
                 name: 'auth-storage', // localStorage key
                 partialize: (state) => ({
-                    user: { name: state.user?.name, email: state.user?.email },
+                    user: { name: state.user?.name, email: state.user?.email,auth: {refresh_token: state.user?.auth?.refresh_token} },
                 }), // only persist user without auth (the tokens)
             },
         ),
