@@ -1,9 +1,10 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { Header } from '@/components/layout/header';
 import { Sidebar } from '@/components/layout/sidebar';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import type { QueryClient } from '@tanstack/react-query';
 
 const RootLayout = () => (
     <>
@@ -31,4 +32,17 @@ const RootLayout = () => (
     </>
 );
 
-export const Route = createRootRoute({ component: RootLayout });
+interface RouterContext {
+    queryClient: QueryClient;
+    auth: {
+        isAuthenticated: boolean;
+        accessToken: string | null;
+        accessTokenExpiresAt: string | null;
+        refreshToken: string | null;
+        refreshTokenExpiresAt: string | null;
+    };
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
+    component: RootLayout,
+});

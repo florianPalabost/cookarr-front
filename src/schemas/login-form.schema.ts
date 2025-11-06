@@ -6,3 +6,7 @@ export const loginFormSchema = z.object({
 });
 
 export type LoginFormSchema = z.infer<typeof loginFormSchema>;
+
+export const LoginSearchSchema = z.object({
+    redirect: z.string().optional().catch(undefined),
+});
